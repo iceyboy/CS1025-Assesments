@@ -1,41 +1,76 @@
-package a1_RyanKing_40372847;
+package a3;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 public class Q2 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner keyboardInput = new Scanner(System.in);
-		int userNumber;
+	}
 
-		boolean restart = true;
-		do {
-			System.out.println("Please enter a number from 1 to 5: ");
-			userNumber = keyboardInput.nextInt();
+	public static double mean(int[] nums) {
 
-			if (userNumber >= 1 && userNumber <= 3) {
-				System.out.println("*** Your call is important to us please hold");
-				restart = true;
-			} else if (userNumber == 4) {
-				System.out.println("*** I'm sorry we can't help you");
-				restart = true;
-			} else if (userNumber == 5) {
-				System.out.println("*** Switch it off and on again");
-				restart = true;
-			} else {
-				System.out.println("*** I can't believe you did that! Try again");
-				restart = false;
+		double mean = 0;
+
+		try {
+
+			int total = 0;
+
+			for (int loop = 0; loop < nums.length; loop++) {
+				total += nums[loop];
 			}
 
-		} while (restart == false);
+			mean = total / nums.length;
 
-		System.out.println("Please enter your name: ");
-		keyboardInput.nextLine();
-		String userName = keyboardInput.nextLine();
-		System.out.println("*** Goodbye " + userName + " have a nice day");
+		} catch (IllegalArgumentException illegalargumentexception) {
 
-		keyboardInput.close();
+			System.out.println("The array you are using is null.");
+
+		} catch (ArithmeticException arithmeticexception) {
+
+			System.out.println("The array you are using is null.");
+
+		}
+
+		return mean;
+
+	}
+
+	public static double median(double[] nums) {
+
+		double median = 0;
+
+		try {
+
+			Arrays.sort(nums);
+
+			if (nums.length % 2 == 0) {
+
+				median = (nums[nums.length - (nums.length / 2)] + nums[nums.length - (nums.length / 2) - 1]) / 2;
+
+			}
+
+			else {
+
+				median = nums[(nums.length / 2) + (nums.length % 2) - 1];
+
+			}
+
+		} catch (IllegalArgumentException illegalargumentexception) {
+
+			System.out.println("The array you are using is null.");
+
+		} catch (ArithmeticException arithmeticexception) {
+
+			System.out.println("The array you are using is null.");
+
+		} catch (ArrayIndexOutOfBoundsException outofbounds) {
+
+			System.out.println("The array you are using is null.");
+
+		}
+
+		return median;
+
 	}
 
 }

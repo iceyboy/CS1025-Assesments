@@ -1,59 +1,96 @@
-package a1_RyanKing_40372847;
+package a3;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Q3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		chLine(5, 'A');
-		chLine(7, '8');
-		numberSquare(10, 4);
-		numberSquare(6, 3);
-		numberSquare(99, 2);
-		System.out.printf("Biggest prime below 100 is %d %n", biggestPrimeBelow(100));
-		System.out.printf("Biggest prime below 3 is %d %n", biggestPrimeBelow(3));
-
+		
+		System.out.println(moneyBall("playersCSV.txt"));
+		
 	}
 
-	public static void chLine(int value, char character) {
-		for (int num1 = 0; num1 <= value; num1++) {
-			System.out.print(character);
+	public static String moneyBall(String fileName) {
 
-		}
-		System.out.println("");
-	}
+		String line = "";
 
-	public static void numberSquare(int firstValue, int width) {
-		for (int num2 = 0; num2 < width; num2++) {
-			for (int num3 = 0; num3 < width; num3++) {
-				System.out.printf(" %d", firstValue);
-				firstValue++;
+		String nameOfBest = "";
+
+		int count = 0;
+
+		try {
+
+			File file = new File(fileName);
+
+			FileReader filereader = new FileReader(file.getName());
+
+			BufferedReader bufferReader = new BufferedReader(filereader);
+
+			String firstLine = bufferReader.readLine();
+
+			int length = Integer.parseInt(firstLine);
+
+			String[] names = new String[length];
+
+			int[] numberOfGoals = new int[length];
+
+			int[] minutesPlayed = new int[length];
+
+			int[] cost = new int[length];
+
+			while (line != null) {
+
+				line = bufferReader.readLine();
+
+				if (line != null) {
+
+					String[] splitLines = line.split(",");
+
+					names[count] = splitLines[0];
+
+					numberOfGoals[count] = Integer.parseInt(splitLines[1]);
+
+					minutesPlayed[count] = Integer.parseInt(splitLines[2]);
+
+					cost[count] = Integer.parseInt(splitLines[3]);
+
+				}
+
+				count++;
 
 			}
-			System.out.println("");
-		}
-	}
 
-	public static boolean isPrime(int num4) {
+			double value = 0;
 
-		boolean result = true;
-		for (int i = 2; i < num4; i++) {
-			if (num4 % i == 0) {
-				result = false;
-				break;
+			for (int loop = 0; loop < length; loop++) {
+
+				float newValue = (numberOfGoals[loop] * (minutesPlayed[loop])) / cost[loop];
+				
+				if (newValue > value) {
+
+					value = newValue;
+
+					nameOfBest = names[loop];
+
+				}
+
 			}
-		}
-		return result;
-	}
 
-	public static int biggestPrimeBelow(int startingNumber) {
-		int largestPrime = 0;
-		for (int num5 = startingNumber; num5 > 1; num5--) {
-			if (isPrime(num5) == true) {
-				largestPrime = num5;
-				break;
-			}
+			bufferReader.close();
+
+			filereader.close();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
 		}
-		return largestPrime;
+
+		return nameOfBest;
+
 	}
 
 }

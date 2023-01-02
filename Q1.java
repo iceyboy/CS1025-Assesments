@@ -1,18 +1,26 @@
-package a1_RyanKing_40372847;
+package a3;
 
 public class Q1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		byte a = -128;
-		short b = 1000;
-		char c = '#';
-		float d = 3.1459f;
-		String e = "#£$";
-
-		System.out.printf("The value of a = %d %nThe value of b = %d %nThe value of c = %s%n", a, b, c);
-
-		System.out.printf("The value of d = %.1f %n2nd char of e = %s", d, e.charAt(1));
+				
+		int[] numbers = new int[10];
+		
+		for(int loop=0; loop<10; loop++) {
+			
+			numbers[loop] = loop + 1;
+			
+		}
+		
+		String[] message = {"well", "going", "is", "all", "Hello"};
+		
+		for(int loop=4; loop>-1; loop--) {
+			
+			System.out.print(message[loop] + " ");
+			
+		}
+		
+		
 
 	}
 
